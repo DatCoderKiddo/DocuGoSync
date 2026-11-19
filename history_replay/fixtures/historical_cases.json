@@ -1,0 +1,50 @@
+[
+  {
+    "repo_name": "requests (psf/requests)",
+    "repo_url": "https://github.com/psf/requests",
+    "code_change_commit": "synthetic-requests-auth-param",
+    "doc_fix_commit": "synthetic-requests-auth-doc-fix",
+    "description": "Session.send() gained a 'proxies' parameter; README showed old signature",
+    "old_code_path": "requests/sessions.py",
+    "old_code": "def send(self, request, **kwargs):\n    \"\"\"Send a given PreparedRequest.\n\n    :rtype: requests.Response\n    \"\"\"\n    kwargs.setdefault('stream', self.stream)\n    kwargs.setdefault('verify', self.verify)\n    return self.resolve_redirects(r, request, **kwargs)\n",
+    "new_code_path": "requests/sessions.py",
+    "new_code": "def send(self, request, proxies=None, **kwargs):\n    \"\"\"Send a given PreparedRequest.\n\n    :param proxies: (optional) Dictionary mapping protocol to the URL of the proxy.\n    :rtype: requests.Response\n    \"\"\"\n    kwargs.setdefault('stream', self.stream)\n    kwargs.setdefault('verify', self.verify)\n    if proxies:\n        kwargs['proxies'] = proxies\n    return self.resolve_redirects(r, request, **kwargs)\n",
+    "old_doc_path": "README.md",
+    "old_doc": "# Requests\n\n## Quickstart\n\nMake a request with `send(request)`. The session object handles authentication automatically.\n\n## Proxies\n\nYou can configure proxy settings via the Session object.\n",
+    "expected_symbol_name": "send",
+    "expected_issue_type": "missing",
+    "historical_fix": "Updated `send` documentation to include the `proxies` parameter."
+  },
+  {
+    "repo_name": "flask (pallets/flask)",
+    "repo_url": "https://github.com/pallets/flask",
+    "code_change_commit": "synthetic-flask-run-param",
+    "doc_fix_commit": "synthetic-flask-run-doc-fix",
+    "description": "app.run() default port changed from 5000 to 8000 in a hypothetical refactor",
+    "old_code_path": "src/flask/app.py",
+    "old_code": "def run(self, host=None, port=5000, debug=None, load_dotenv=True, **options):\n    \"\"\"Runs the application on a local development server.\n\n    Do not use ``run()`` in a production setting.\n\n    :param host: the hostname to listen on.\n    :param port: the port of the webserver. Defaults to ``5000``.\n    \"\"\"\n    pass\n",
+    "new_code_path": "src/flask/app.py",
+    "new_code": "def run(self, host=None, port=8000, debug=None, load_dotenv=True, **options):\n    \"\"\"Runs the application on a local development server.\n\n    Do not use ``run()`` in a production setting.\n\n    :param host: the hostname to listen on.\n    :param port: the port of the webserver. Defaults to ``8000``.\n    \"\"\"\n    pass\n",
+    "old_doc_path": "README.md",
+    "old_doc": "# Flask\n\n## Quickstart\n\nRun your app with `run(host, port=5000)`. By default Flask starts on port 5000.\n\n## Development Server\n\nThe built-in server runs on `http://localhost:5000` by default.\n",
+    "expected_symbol_name": "run",
+    "expected_issue_type": "outdated",
+    "historical_fix": "Updated default port from 5000 to 8000 in documentation."
+  },
+  {
+    "repo_name": "httpx (encode/httpx)",
+    "repo_url": "https://github.com/encode/httpx",
+    "code_change_commit": "synthetic-httpx-timeout-default",
+    "doc_fix_commit": "synthetic-httpx-timeout-doc-fix",
+    "description": "get() timeout default changed from 5.0 to 30.0; README showed old value",
+    "old_code_path": "httpx/_api.py",
+    "old_code": "def get(url, params=None, headers=None, timeout=5.0, verify=True):\n    \"\"\"Send a GET request.\n\n    :param url: URL to request.\n    :param timeout: How many seconds to wait. Defaults to 5.0.\n    \"\"\"\n    return request('GET', url, params=params, headers=headers, timeout=timeout)\n",
+    "new_code_path": "httpx/_api.py",
+    "new_code": "def get(url, params=None, headers=None, timeout=30.0, verify=True):\n    \"\"\"Send a GET request.\n\n    :param url: URL to request.\n    :param timeout: How many seconds to wait. Defaults to 30.0.\n    \"\"\"\n    return request('GET', url, params=params, headers=headers, timeout=timeout)\n",
+    "old_doc_path": "README.md",
+    "old_doc": "# HTTPX\n\n## Quickstart\n\nCreate a client and call `get(url, timeout=5.0)`. The default timeout is 5 seconds.\n\n## Configuration\n\nThe `timeout` parameter controls how long to wait for a response. Set to `5.0` by default.\n",
+    "expected_symbol_name": "get",
+    "expected_issue_type": "outdated",
+    "historical_fix": "Updated timeout default from 5.0 to 30.0 in the README."
+  }
+]

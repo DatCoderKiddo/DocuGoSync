@@ -1,0 +1,18 @@
+# DocuGoSync backend dependencies
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+pydantic>=2.14.2
+pydantic-settings==2.6.1
+sqlalchemy[asyncio]==2.0.36
+aiosqlite==0.20.0
+httpx==0.28.0
+python-multipart==0.0.12
+python-dotenv==1.0.1
+
+# Optional: vector search (Phase 2)
+# sentence-transformers==3.3.1
+
+# Dev / test
+pytest==8.3.4
+pytest-asyncio==0.24.0
+httpx  # also used as async test client
